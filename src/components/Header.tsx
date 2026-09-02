@@ -22,7 +22,7 @@ const Header = () => {
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Gallery', href: '#gallery' },
-    { label: ' my Contact', href: '#contact' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   const scrollToSection = (href: string) => {
