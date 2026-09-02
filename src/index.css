@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Seven Links Glass & Aluminium Design System */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --bg: 216 18% 12%;           /* #1E1F22 - main background */
+    --surface: 220 19% 6%;    /* #25282C - cards/sections */
+    --surface-muted: 216 12% 18%; /* #2C3036 - muted surfaces */
+    
+    /* Text Colors */
+    --text: 215 25% 93%;         /* #EAECEF - primary text */
+    --text-muted: 215 15% 75%;   /* #B8BDC7 - secondary text */
+    
+    /* Brand Colors */
+    --primary: 18 100% 61%;      /* #FF7A3D - orange CTA */
+    --primary-hover: 18 100% 55%; /* Darker orange */
+    --accent: 217 96% 59%;       /* #2F7BFC - blue accent */
+    
+    /* UI Colors */
+    --border: 215 12% 25%;       /* #3A3F46 - borders */
+    --input: 220 19% 6%;      /* Input backgrounds */
+    --ring: 18 100% 61%;         /* Focus rings */
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--accent) / 0.1), hsl(var(--primary) / 0.1));
+    --gradient-cta: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px hsl(var(--bg) / 0.3);
+    --shadow-md: 0 8px 25px hsl(var(--bg) / 0.4);
+    --shadow-lg: 0 20px 40px hsl(var(--bg) / 0.5);
+    
+    /* Glass Effect */
+    --glass-bg: hsl(var(--surface) / 0.8);
+    --glass-border: hsl(var(--border) / 0.2);
+    
+    /* Animation Easing */
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-montserrat antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  /* Glass morphism effect */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-cta);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Multi-color gradient for specific text */
+  .gradient-text-hero {
+    background: linear-gradient(135deg, #4F7BFF 0%, #8B5CF6 50%, #FF7A3D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Dotted grid background */
+  .dotted-grid {
+    background-image: radial-gradient(circle, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* Hero background effects */
+  .hero-bg {
+    background: radial-gradient(ellipse at top right, hsl(var(--accent) / 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, hsl(var(--primary) / 0.1) 0%, transparent 50%);
+  }
+  
+  /* Badge styling */
+  .badge {
+    @apply bg-surface/80 text-text border border-border/50 rounded-full px-3 py-1.5 text-sm font-medium backdrop-blur-sm;
+  }
+  
+  /* Button variants */
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-hover transition-all duration-200 rounded-xl px-6 py-3 font-medium;
+    box-shadow: 0 4px 14px hsl(var(--primary) / 0.4);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px hsl(var(--primary) / 0.6);
+  }
+  
+  .btn-outline {
+    @apply border border-border text-text hover:bg-surface transition-all duration-200 rounded-xl px-6 py-3 font-medium;
+  }
+  
+  .btn-outline:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Shadow effects */
+  .shadow-glow {
+    box-shadow: 0 4px 14px hsl(var(--primary) / 0.4);
+  }
+  
+  /* Section spacing */
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  /* Container */
+  .container-custom {
+    @apply max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Animations */
+  .animate-fade-up {
+    animation: fadeUp 0.6s var(--ease-smooth) forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s var(--ease-bounce) forwards;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+
+
+/* hero background */
+/* ===== dotted halftone wedge ========================================== */
+/* Dotted halftone wedge (sparser + masked) */
+.hero-dots{
+  /* fewer dots = bigger gap */
+  --dot-size: 2px;                 /* dot diameter */
+  --dot-gap: 22px;                 /* increase for fewer dots */
+  --dot-color: rgba(255,255,255,0.20);
+
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--dot-color) var(--dot-size), transparent 0);
+  background-size:
+    calc(var(--dot-gap) + var(--dot-size))
+    calc(var(--dot-gap) + var(--dot-size));
+
+  /* show only a triangular-ish wedge and fade out */
+  -webkit-mask:
+    /* triangular sweep from top-left */
+    conic-gradient(from 208deg at 22% 18%, #000 0 54%, transparent 0 100%),
+    /* soft radial falloff */
+    radial-gradient(90% 70% at 50% 40%, #000 58%, transparent 74%);
+          mask:
+    conic-gradient(from 208deg at 22% 18%, #000 0 54%, transparent 0 100%),
+    radial-gradient(90% 70% at 50% 40%, #000 58%, transparent 74%);
+}
+
+/* ===== grid lines block =============================================== */
+.hero-grid{
+  --grid-gap: 7.5cqw; /* bigger = fewer lines */
+  --grid-color: rgba(255,255,255,0.10);
+  background-image:
+    repeating-linear-gradient(to right, var(--grid-color) 0 1px, transparent 1px var(--grid-gap)),
+    repeating-linear-gradient(to bottom, var(--grid-color) 0 1px, transparent 1px var(--grid-gap));
+  position: relative;
+}
+.hero-grid::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(to right, transparent 49.8%, rgba(255,255,255,0.16) 49.8% 50.2%, transparent 50.2%),
+    linear-gradient(to bottom, transparent 49.8%, rgba(255,255,255,0.16) 49.8% 50.2%, transparent 50.2%);
+  opacity:.6;
+}
+
+
+/* ===== blue rays / glow =============================================== */
+/* ===== blue rays / glow =============================================== */
+.hero-rays{
+  /* #0c97ee = rgb(12,151,238) */
+  --c: 12,151,238;
+
+  --ray1: radial-gradient(120% 60% at 70% 40%,
+            rgba(var(--c), .65) 0%,
+            rgba(var(--c), .35) 35%,
+            rgba(var(--c), 0) 70%);
+  --ray2: radial-gradient(100% 50% at 78% 46%,
+            rgba(var(--c), .45) 0%,
+            rgba(var(--c), 0) 60%);
+  --streaks: conic-gradient(from 320deg at 62% 45%,
+            rgba(var(--c), .35) 0 6deg, transparent 6deg 12deg,
+            rgba(var(--c), .25) 12deg 18deg, transparent 18deg 24deg);
+
+  background-image: var(--ray1), var(--ray2), var(--streaks);
+  filter: blur(6px) saturate(1.05);
+  transform: rotate(-12deg);
+  opacity: .9;
+
+  -webkit-mask: radial-gradient(120% 90% at 60% 45%, #000 50%, transparent 85%);
+          mask: radial-gradient(120% 90% at 60% 45%, #000 50%, transparent 85%);
+}
+
+
+/* ===== tiny utilities used in your hero ================================ */
+.dotted-grid{
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+.badge{
+  padding:6px 12px;border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.14);
+  font-size:.85rem;
+}
+.btn-primary{background:#FF8F2B;color:#0D0F13;font-weight:600}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-outline{border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:600}
+
+/* === Mobile-only hero background fix (does not affect desktop) === */
+@media (max-width: 640px) {
+  /* Make the blue ray larger via scale, and shift its origin so it feathers off-screen.
+     No position/size changes, so desktop layout is preserved. */
+  .hero-rays {
+    transform: rotate(-12deg) scale(1.55);   /* extend painted area */
+    transform-origin: 85% 15%;               /* push glow toward top-right */
+    filter: blur(10px) saturate(1.05);
+    opacity: .95;
+
+    /* slightly brighter/softer mobile shape to avoid visible edge */
+    --c: 12,151,238;
+    --ray1: radial-gradient(48% 38% at 40% 46%,
+              rgba(var(--c), .90) 0%,
+              rgba(var(--c), .55) 34%,
+              rgba(var(--c), 0) 72%);
+    --ray2: radial-gradient(38% 30% at 62% 54%,
+              rgba(var(--c), .40) 0%,
+              rgba(var(--c), 0) 60%);
+    --streaks: conic-gradient(from 320deg at 62% 45%,
+              rgba(var(--c), .25) 0 6deg, transparent 6deg 12deg,
+              rgba(var(--c), .18) 12deg 18deg, transparent 18deg 24deg);
+    background-image: var(--ray1), var(--ray2), var(--streaks);
+
+    /* softer mask so it feathers rather than clipping */
+    -webkit-mask: radial-gradient(135% 110% at 65% 40%, #000 52%, transparent 78%);
+            mask: radial-gradient(135% 110% at 65% 40%, #000 52%, transparent 78%);
+  }
+
+  /* lighter grid/dots so text reads better on phones */
+  .hero-grid { --grid-gap: 32px; }
+  .hero-dots {
+    --dot-gap: 24px;
+    --dot-size: 2px;
+    --dot-color: rgba(255,255,255,0.16);
+  }
+}
